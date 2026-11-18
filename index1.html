@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Forma</title>
+<!-- Ikona na ekranie początkowym iPhone'a (PNG 180×180 obok tego pliku) -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Forma">
+<meta name="theme-color" content="#0c0d0f">
+<style>
+  :root{--bg:#0c0d0f;--s1:#16181b;--tx:#f3f1ec;--mu:#8e949d;--ac:#5a92ff;--on-ac:#04112b;color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:calc(env(safe-area-inset-top,0px) + 24px) 24px calc(env(safe-area-inset-bottom,0px) + 24px);text-align:center}
+  img{width:112px;height:112px;border-radius:25px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+  h1{margin:0;font-size:34px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  p{margin:0;color:var(--mu);max-width:320px}
+  ol{margin:4px 0 0;padding:16px 18px 16px 38px;max-width:340px;text-align:left;background:var(--s1);border-radius:18px;line-height:1.6}
+  ol b{color:var(--tx)}
+  a.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:14px;background:var(--ac);color:var(--on-ac);font-weight:800;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <img src="apple-touch-icon.png" alt="">
+  <h1>Forma</h1>
+  <p id="go">Otwieram Formę…</p>
+  <section id="setup" hidden>
+    <p>Dodaj tę stronę do ekranu początkowego, a dostaniesz ikonę z hantlą, która otwiera Formę.</p>
+    <ol>
+      <li>Stuknij <b>Udostępnij</b> na dole Safari.</li>
+      <li>Wybierz <b>Do ekranu początkowego</b>.</li>
+      <li>Zostaw nazwę <b>Forma</b> i stuknij <b>Dodaj</b>.</li>
+    </ol>
+  </section>
+  <a class="btn" id="open" href="https://claude.ai/artifact/Puq5CH78gsDSv3RC4mTjiD">Otwórz Formę</a>
+</main>
+<script>
+  // Adres aplikacji Forma w claude.ai
+  var FORMA = 'https://claude.ai/artifact/Puq5CH78gsDSv3RC4mTjiD';
+  if (location.hash === '#dodaj') {
+    // Tryb dodawania: pokaż instrukcję i usuń #dodaj z adresu,
+    // żeby ikona na ekranie zapisała czysty adres (bez instrukcji)
+    history.replaceState(null, '', location.pathname + location.search);
+    document.getElementById('go').hidden = true;
+    document.getElementById('setup').hidden = false;
+  } else {
+    // Uruchomienie z ikony: od razu przejdź do Formy
+    location.replace(FORMA);
+  }
+</script>
+</body>
+</html>
